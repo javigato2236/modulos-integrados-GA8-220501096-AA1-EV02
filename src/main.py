@@ -35,9 +35,7 @@ def registro_log():
         finally:
             pass
 
-    
-        
-        
+
 @app.route("/login", methods = ["POST", "GET"])
 def login():
     if request.method =="POST" and "email" in request.form and "password" in request.form:
@@ -48,7 +46,7 @@ def login():
             if check_password_hash(registros[3],password):
                 session["login"] = True
                 session["id"] = registros[0]
-                flash("session iniciada con exito","ini_session")
+                flash("sesion iniciada con exito","ini_session")
                 return render_template("inicio_session.html", registros=registros)
             else:
                 flash("correo electronico o contraseña incorrectos","no_inicio_session")
@@ -56,13 +54,42 @@ def login():
         else:
             flash("correo electronico o contraseña incorrectos","no_inicio_session")
             return render_template("index.html")
+        
+
+
+
+
+
+
+@app.route("/ver_registros")
+def registro_estudi():
+    return render_template("registros.html")
+
+@app.route("/registro_estudiantes", methods = ["POST", "GET"])
+def registro_de_estudiantes():
+    if request.method == 'POST':
+        nombres = request.form["nombres"]
+        apellidos = request.form["apellidos"]
+        edad = request.form["edad"]
+        materia = request.form["materia"]
+        calificacion = request.form["calificacion"]
+        funciones.registrar_estudiantes(nombres, apellidos, edad, materia, calificacion)
+        return render_template("inicio_session.html")
+
    
+
+
+
+
+
+
+
 
 
 @app.route("/logout")        
 def logout_sesion():
     session.clear()
-    return redirect((url_for('inicio')))
+    return redirect((url_for('index')))
 
 
 

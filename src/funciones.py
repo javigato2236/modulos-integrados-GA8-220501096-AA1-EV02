@@ -7,6 +7,16 @@ def registrar_usuario(usuario,email,password):
         conexion.commit()
         conexion.close()
 
+def registrar_estudiantes(nombres, apellidos, edad, materia, calificacion):
+    conexion = iniciar_conexion()
+    with conexion.cursor() as cursor:
+        cursor.execute("INSERT INTO estudiantes(nombres, apellidos, edad, materia, calificacion) VALUES (%s,%s,%s,%s,%s)",(nombres, apellidos, edad, materia, calificacion)) 
+        conexion.commit()
+        conexion.close()
+
+
+
+
 def inicio_sesion(email):
     conexion = iniciar_conexion()
     with conexion.cursor() as cursor:

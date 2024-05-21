@@ -8,19 +8,54 @@
 <body>
 
     {% with messages = get_flashed_messages(category_filter=["ini_session"]) %}
-            {% if messages %}
-            {% for message in messages %}
-            <h3>{{message}}</h3>
+    {% if messages %}
+    {% for message in messages %}
+    <h3>{{message}}</h3>
 
-            {% endfor %}
-            {% endif %}
-        {% endwith %}
+    {% endfor %}
+    {% endif %}
+{% endwith %}
 
 
+
+
+
+
+
+
+
+
+    <div>
+        <h1>registro de materias</h1>
+        
+            <form action="{{url_for('registro_de_estudiantes')}}" method="post">
+                
     
-
+                <label for="nombres">nombres</label>
+                <input type="text" name="nombres" id="nombres">
     
+                <label for="apellidos">apellidos</label>
+                <input type="text" name="apellidos" id="apellidos">
+    
+                <label for="edad">edad</label>
+                <input type="number" name="edad" id="edad">
+    
+                <label for="materia">materia</label>
+                <input type="text" name="materia" id="materia">
+    
+                <label for="calificacion">calificacion</label>
+                <input type="text" name="calificacion" id="calificacion">
+    
+                <button type="submit">enviar</button>
+    
+    
+            </form>
 
+    </div>
+
+    <h2><a href="/ver_registros">ver registros</a></h2>
+
+    <h2><a href="{{url_for('logout_sesion')}}">cerrar sesion</a></h2>
 
     
 </body>
