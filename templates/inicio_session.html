@@ -14,13 +14,7 @@
 
     {% endfor %}
     {% endif %}
-{% endwith %}
-
-
-
-
-
-
+    {% endwith %}
 
 
 
@@ -53,9 +47,18 @@
 
     </div>
 
+    {% with messages = get_flashed_messages(category_filter=["registro exitoso"]) %}
+    {% if messages %}
+    {% for message in messages %}
+    <h3>{{message}}</h3>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
     <h2><a href="/ver_regis">ver registros</a></h2>
 
     <h2><a href="{{url_for('logout_sesion')}}">cerrar sesion</a></h2>
+
 
     
 </body>

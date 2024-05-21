@@ -25,13 +25,27 @@
                 <td>{{registros[4]}}</td>
                 <td>{{registros[5]}}</td>
                 <td>actualizar</td>
-                <td>eliminar</td>
+                <td>
+                    <form action="{{url_for('eliminar_registro_estudiantes')}}" method="post">
+                        <input type="hidden" name="id" value="{{registros[0]}}">
+                        <button type="submit">eliminar</button>
+                    </form>
+                </td>
             </tr>
             {%endfor%}
         </tbody>
     </table>
 
     <h3><a href="{{url_for('inicio_sesion')}}">regresar</a></h3>
+
+    {% with messages = get_flashed_messages(category_filter=["eliminar registro"]) %}
+            {% if messages %}
+            {% for message in messages %}
+            <h3>{{message}}</h3>
+
+            {% endfor %}
+            {% endif %}
+        {% endwith %}
 
     
 </body>

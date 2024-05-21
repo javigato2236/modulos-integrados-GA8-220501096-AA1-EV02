@@ -78,7 +78,16 @@ def registro_de_estudiantes():
         materia = request.form["materia"]
         calificacion = request.form["calificacion"]
         funciones.registrar_estudiantes(nombres, apellidos, edad, materia, calificacion)
+        flash("Registro agregado con exito", "registro exitoso")
         return render_template("inicio_session.html")
+    
+@app.route("/eliminar", methods = ["POST"])
+def eliminar_registro_estudiantes():
+    funciones.borrar_registro(request.form["id"])
+    flash("registro eliminado con exito","eliminar registro")
+    return redirect("/ver_regis")
+
+
 
    
 @app.route("/ver_regis")  
@@ -96,6 +105,7 @@ def ver_registros():
 @app.route("/logout")        
 def logout_sesion():
     session.clear()
+    flash("sesion cerrada con exito","cerrar sesion")
     return redirect((url_for('index')))
 
 

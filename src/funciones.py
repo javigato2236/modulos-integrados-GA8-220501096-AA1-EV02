@@ -23,6 +23,13 @@ def enviar_registro():
     conexion.close()
     return registros
 
+def borrar_registro(id):
+    conexion = iniciar_conexion()
+    with conexion.cursor() as cursor:
+        cursor.execute("DELETE FROM estudiantes  WHERE id = %s",(id))
+    conexion.commit()
+    conexion.close()
+
 
 
 
