@@ -27,11 +27,14 @@ def registro_log():
         password = generate_password_hash(request.form["password"])
         try:
             funciones.registrar_usuario(usuario,email,password)
+            flash("registro exitoso","registro_exito")
+            return render_template("index.html")
         except:
             flash("el correo electronico ingresado ya se encuentra registrado","error")
             return render_template("registrar_usuarios.html")
         finally:
-            return render_template("registrar_usuarios.html")
+            pass
+
     
         
         
