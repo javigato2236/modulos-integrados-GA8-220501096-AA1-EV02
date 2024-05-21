@@ -65,6 +65,10 @@ def login():
 def registro_estudi():
     return render_template("registros.html")
 
+@app.route("/ini_sesion")
+def inicio_sesion():
+    return render_template("inicio_session.html")
+
 @app.route("/registro_estudiantes", methods = ["POST", "GET"])
 def registro_de_estudiantes():
     if request.method == 'POST':
@@ -77,7 +81,10 @@ def registro_de_estudiantes():
         return render_template("inicio_session.html")
 
    
-
+@app.route("/ver_regis")  
+def ver_registros():
+    registros = funciones.enviar_registro()
+    return render_template("registros.html", registros = registros)
 
 
 

@@ -17,17 +17,21 @@
             <th>acciones</th>
         </tr>
         <tbody>
+            {% for registros in registros %}
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{registros[1]}}</td>
+                <td>{{registros[2]}}</td>
+                <td>{{registros[3]}}</td>
+                <td>{{registros[4]}}</td>
+                <td>{{registros[5]}}</td>
                 <td>actualizar</td>
                 <td>eliminar</td>
             </tr>
+            {%endfor%}
         </tbody>
     </table>
+
+    <h3><a href="{{url_for('inicio_sesion')}}">regresar</a></h3>
 
     
 </body>
