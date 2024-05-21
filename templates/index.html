@@ -26,6 +26,15 @@
         <a href="">olvido su contraseña</a>
 
         <a href="/registro">registrarse</a>
+        
+        {% with messages = get_flashed_messages(category_filter=["no_inicio_session"]) %}
+            {% if messages %}
+            {% for message in messages %}
+            <h3>{{message}}</h3>
+
+            {% endfor %}
+            {% endif %}
+        {% endwith %}
 
 
     </div>

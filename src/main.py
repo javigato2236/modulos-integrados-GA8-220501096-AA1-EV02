@@ -48,8 +48,10 @@ def login():
                 flash("session iniciada con exito","ini_session")
                 return render_template("inicio_session.html", registros=registros)
             else:
+                flash("correo electronico o contraseña incorrectos","no_inicio_session")
                 return render_template("index.html")
         else:
+            flash("correo electronico o contraseña incorrectos","no_inicio_session")
             return render_template("index.html")
    
 
