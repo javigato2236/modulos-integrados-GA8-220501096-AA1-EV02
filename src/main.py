@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 import funciones
 from flask import flash
@@ -28,36 +28,36 @@ def registro_log():
         try:
             funciones.registrar_usuario(usuario,email,password)
         except:
-            flash("el correo electronico ingresado ya se encuentra registrado","!error¡")
+            flash("el correo electronico ingresado ya se encuentra registrado","error")
             return render_template("registrar_usuarios.html")
         finally:
             return render_template("registrar_usuarios.html")
     
         
-
-
-
-
-
-
         
 @app.route("/login", methods = ["POST", "GET"])
 def login():
     if request.method =="POST" and "email" in request.form and "password" in request.form:
         email= request.form["email"]
         password = request.form["password"]
-        registros = control.inicio_sesion(email)
+        registros = funciones.inicio_sesion(email)
         if registros:
             if check_password_hash(registros[3],password):
                 session["login"] = True
                 session["id"] = registros[0]
-                return render_template("quedo_bien.html", registros=registros)
+                flash("session iniciada con exito","ini_session")
+                return render_template("inicio_session.html", registros=registros)
             else:
                 return render_template("index.html")
         else:
             return render_template("index.html")
-    else:
-        render_template("index.html")
+   
+
+
+@app.route("/logout")        
+def logout_sesion():
+    session.clear()
+    return redirect((url_for('inicio')))
 
 
 

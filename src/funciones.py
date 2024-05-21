@@ -10,6 +10,6 @@ def registrar_usuario(usuario,email,password):
 def inicio_sesion(email):
     conexion = iniciar_conexion()
     with conexion.cursor() as cursor:
-        cursor.execute("SELECT *FROM usuarios WHERE correo_electrónico=%s",(email))
+        cursor.execute("SELECT *FROM usuarios WHERE correo_electronico=%s",(email))
         registros = cursor.fetchone()
         return registros
