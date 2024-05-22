@@ -24,7 +24,9 @@
                 <td>{{registros[3]}}</td>
                 <td>{{registros[4]}}</td>
                 <td>{{registros[5]}}</td>
-                <td>actualizar</td>
+                <td>
+                    <a href="{{url_for('editar_datos', id=registros[0])}}">actualizar</a>
+                </td>
                 <td>
                     <form action="{{url_for('eliminar_registro_estudiantes')}}" method="post">
                         <input type="hidden" name="id" value="{{registros[0]}}">

@@ -30,9 +30,21 @@ def borrar_registro(id):
     conexion.commit()
     conexion.close()
 
+def obtener_datos(id):
+    conexion = iniciar_conexion()
+    registro = None
+    with conexion.cursor() as cursor:
+        cursor.execute("SELECT id, nombres, apellidos, edad, materia, calificacion FROM estudiantes WHERE id=%s",(id)) 
+        registro = cursor.fetchone()
+    conexion.close()
+    return registro
 
-
-
+def actualizar(id,nombres,apellidos,edad,materia,calificacion):
+    conexion = iniciar_conexion()
+    with conexion.cursor() as cursor:
+        cursor.execute("UPDATE estudiantes SET nombres= %s, apellidos= %s, edad= %s, materia=%s, calificacion=%s WHERE id = %s",(nombres, apellidos, edad, materia, calificacion,  id))
+        conexion.commit()
+        conexion.close()
 
 
 def inicio_sesion(email):

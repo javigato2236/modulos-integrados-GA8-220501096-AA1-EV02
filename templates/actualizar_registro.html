@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{{url_for('actualizar_datos')}}" method="post">
+
+        <input type="hidden" name="id" value="{{registros[0]}}">
+
+        <label for="nombres">nombres</label>
+        <input type="text" name="nombres" id="nombres" value="{{registros[1]}}">
+
+        <label for="apellidos">apellidos</label>
+        <input type="text" name="apellidos" id="apellidos" value="{{registros[2]}}">
+
+        <label for="edad">edad</label>
+        <input type="text" name="edad" id="edad" value="{{registros[3]}}">
+
+        <label for="materia">materia</label>
+        <input type="text" name="materia" id="materia" value="{{registros[4]}}">
+
+        <label for="calificacion">calificacion</label>
+        <input type="text" name="calificacion" id="calificacion" value="{{registros[5]}}">
+
+        <button type="submit">enviar</button>
+
+
+
+    </form>
+    
+</body>
+</html>

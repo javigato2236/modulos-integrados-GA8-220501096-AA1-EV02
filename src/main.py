@@ -87,6 +87,22 @@ def eliminar_registro_estudiantes():
     flash("registro eliminado con exito","eliminar registro")
     return redirect("/ver_regis")
 
+@app.route("/edit_datos/<int:id>")
+def editar_datos(id):
+    registro = funciones.obtener_datos(id)
+    return render_template("actualizar_registro.html", registros = registro)
+
+@app.route("/actualiza_datos" , methods=["POST", "GET"])
+def actualizar_datos():
+    id = request.form["id"]
+    nombres = request.form["nombres"]
+    apellidos =request.form["apellidos"]
+    edad = request.form["edad"]
+    materia = request.form["materia"]
+    calificacion = request.form["calificacion"]
+    funciones.actualizar(id,nombres,apellidos,edad,materia,calificacion)
+    return redirect('/ver_regis')
+
 
 
    
